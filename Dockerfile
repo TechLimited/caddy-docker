@@ -15,10 +15,9 @@ ENV DOCKER_GEN_VERSION 0.7.3
 ENV DOWNLOAD_URL https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VERSION/docker-gen-alpine-linux-amd64-$DOCKER_GEN_VERSION.tar.gz
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
-RUN wget -qO- $DOWNLOAD_URL | tar xvz -C /usr/local/bin 
+RUN wget -qO- $DOWNLOAD_URL | tar xvz -C /usr/local/bin
 
 ADD etc /etc
 
-COPY docker-entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
-
+COPY docker-entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
